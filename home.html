@@ -1,0 +1,61 @@
+
+	<div id="parallax-container">
+		<div style="background-image: url('../img/background0.png'); z-index: -14;"></div>
+		<div style="background-image: url('../img/background1.png'); z-index: -13;"></div>
+		<div style="background-image: url('../img/background2.png'); z-index: -12;"></div>
+		<div style="background-image: url('../img/background3.png'); z-index: -11;"></div>
+	</div>
+	
+	
+	<div id="main">
+		<div class="container bg-black">
+			<div class="row">
+				<div class="col">
+					<h1>
+						Hello.
+					</h1>
+					<h2>
+						My name is <span class="accent1">Mees Hendriks</span> and this is my website
+					</h2>
+					<p>
+						It may or may not include actual content at some point in the future.
+					</p>
+					<p>
+						My current hobbies include: 
+					</p>
+					<ul>
+						<li>
+							- Tea
+						</li>
+						<li>
+							- Mechanical Keyboards
+						</li>
+						<li>
+							- Cooking
+						</li>
+						<li>
+							- Cheese
+						</li>
+						<li>
+							- Dying of exam stress
+						</li>
+					</ul>
+				</div>
+				<div class="spacer">
+	
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<script>
+window.addEventListener('scroll', () => {
+   let parent = document.getElementById('parallax-container');
+   let children = parent.getElementsByTagName('div');
+   for(let i = 0; i < children.length; i++) {
+     children[i].style.transform = 'translateY(-' + (window.pageYOffset * 1.5 * (i+1) / children.length) + 'px)';
+   }
+}, false)
+</script>

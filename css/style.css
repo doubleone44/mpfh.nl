@@ -1,0 +1,227 @@
+html body {
+  background-color: #1A1A1A;
+  min-height: 100vh;
+  font-size: 100%;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+@media screen and (min-width: 786px) {
+  html body {
+    font-size: 100%;
+  }
+}
+@media screen and (min-width: 992px) {
+  html body {
+    font-size: 100%;
+  }
+}
+html body p,
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body li {
+  color: #7dbdb6;
+}
+html body p,
+html body li,
+html body a {
+  font-size: 1.5em;
+  line-height: 1.8em;
+}
+html body h1 {
+  font-size: 5em;
+}
+html body h2 {
+  font-size: 3em;
+}
+html body p a {
+  color: #958ee7;
+  border-bottom: solid 1px #958ee7;
+}
+html body ul {
+  list-style-type: none;
+}
+html body ul li {
+  color: #958ee7;
+}
+html body .accent1 {
+  color: #85b9f1;
+}
+html body .accent2 {
+  color: #958ee7;
+}
+.wrapper {
+  overflow-x: hidden;
+  position: relative;
+}
+.bg-black {
+  background-color: #1A1A1A;
+}
+#parallax-container {
+  display: block;
+  height: 90vh;
+  position: relative;
+}
+@media screen and (min-width: 992px) {
+  #parallax-container {
+    height: 100vh;
+  }
+}
+#parallax-container div {
+  position: fixed;
+  top: 0;
+  background-position: center right !important;
+  background-size: cover;
+  transform: translateY(0px);
+  height: 150vh;
+  width: 100%;
+}
+#parallax-container::before,
+#parallax-container::after {
+  position: absolute;
+  content: '';
+  bottom: 0vh;
+  width: calc(50% + 10px);
+  /* don't change */
+  height: 50px;
+  /* must be equal to padding-top */
+  background: #1A1A1A;
+  overflow-x: hidden;
+}
+@media screen and (min-width: 992px) {
+  #parallax-container::before,
+  #parallax-container::after {
+    bottom: 0;
+  }
+}
+#parallax-container::before {
+  left: 0;
+  transform: skew(45deg);
+  transform-origin: right bottom;
+}
+#parallax-container::after {
+  right: 0;
+  transform: skew(-45deg);
+  transform-origin: left bottom;
+}
+#main {
+  position: relative;
+  padding-top: 50px;
+  background-color: #1A1A1A;
+}
+.section-1 {
+  height: 150vh;
+  background: url("../img/background.jpg") center center;
+  background-size: cover;
+}
+.header {
+  background-color: transparent;
+  position: fixed;
+  width: 100vw;
+  z-index: 99;
+}
+.header .navbar {
+  font-family: 'IBM Plex Mono', monospace;
+  align-content: right;
+  padding-bottom: 20px;
+}
+.header .navbar a {
+  color: #327871;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.header .navbar .navbar-brand {
+  margin-top: 10px;
+  font-size: 1.5em;
+  color: #7dbdb6;
+}
+.header .navbar .navbar-brand:hover,
+.header .navbar .navbar-brand:focus {
+  color: #7dbdb6;
+}
+.header .navbar .navbar-brand.active {
+  color: #7dbdb6;
+  border-bottom: #7dbdb6 1px solid;
+}
+.header .navbar .navbar-brand.active:hover,
+.header .navbar .navbar-brand.active:focus {
+  color: #7dbdb6;
+  border-bottom: #7dbdb6 1px solid;
+}
+.header .navbar .navbar-nav {
+  float: right;
+}
+.header .navbar .nav-item {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  max-width: 200px;
+  float: right;
+  justify-content: flex-end;
+  display: flex;
+}
+@media screen and (min-width: 992px) {
+  .header .navbar .nav-item {
+    padding-top: 20px;
+  }
+  .header .navbar .nav-item .nav-link {
+    font-size: 1em;
+  }
+}
+.header .navbar .nav-item a {
+  color: #327871;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  font-weight: 400;
+  text-align: right;
+}
+.header .navbar .nav-item:hover a,
+.header .navbar .nav-item:focus a {
+  color: #7dbdb6;
+}
+.header .navbar .nav-item.active a {
+  color: #52928b;
+  border-bottom: #52928b 1px solid;
+}
+.header .navbar .nav-item.active:hover a,
+.header .navbar .nav-item.active:focus a {
+  color: #7dbdb6;
+  border-bottom: #7dbdb6 1px solid;
+}
+.header .navbar .navbar-toggler {
+  padding-top: 20px;
+  padding-right: 0px;
+  border: none!important;
+  outline: none;
+}
+.header .navbar .navbar-toggler .burger-line {
+  width: 50px;
+  height: 3px;
+  background-color: #7dbdb6;
+  margin: 15px 0;
+}
+.spacer {
+  display: block;
+  width: 100%;
+  height: 30px;
+}
+@media screen and (min-width: 786px) {
+  .spacer {
+    height: 50px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .spacer {
+    height: 70px;
+  }
+}
+#footer {
+  background-color: #327871;
+}
+#footer p {
+  color: black;
+  font-size: 1em;
+  margin: 0 5px;
+}
