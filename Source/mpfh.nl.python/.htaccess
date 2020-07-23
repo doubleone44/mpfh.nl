@@ -1,0 +1,11 @@
+DirectoryIndex index.py
+
+AddHandler cgi-script .cgi .py
+Options FollowSymLinks ExecCGI
+
+RewriteEngine on
+
+RewriteCond %{DOCUMENT_ROOT} !-f
+RewriteRule !\.(py|js|ico|gif|jpg|png|css|html|swf|flv|xml)$ index.py [QSA,L]
+
+

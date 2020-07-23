@@ -1,0 +1,17 @@
+$white: #eeffff;
+$black: #1A1A1A;
+$color1: #69D1C5;
+$color2: #3BA99C;
+$color3: #21897E;
+$color4: #77B9FF;
+$color5: #8980F5;
+
+$pastel1: desaturate($color1, 20%);
+$pastel2: desaturate($color2, 20%);
+$pastel3: desaturate($color3, 20%);
+$pastel4: desaturate($color4, 20%);
+$pastel5: desaturate($color5, 20%);
+
+$darkblue: mix($black, $pastel4, 70);
+
+$header-height: 150px;
