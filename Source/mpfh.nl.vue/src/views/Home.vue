@@ -1,7 +1,10 @@
 <template>
   <div>
     <navigation />
-    <div id="parallax-container">
+    <div 
+      :ref="parallax"
+      id="parallax-container"
+    >
       <div 
         :style="{ backgroundImage: 'url(' + require('@/img/background0.png') +')', zIndex: '-14' }"
       ></div>
