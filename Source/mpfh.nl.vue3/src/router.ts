@@ -1,6 +1,5 @@
 // router file
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from './views/Home.vue';
 import Synth from './views/Synth.vue';
 
@@ -17,8 +16,8 @@ const routes = [
     }
 ];
 
-const router = VueRouter.createRouter({
-    history: VueRouter.createWebHistory(),
+const router = createRouter({
+    history: createWebHistory(),
     routes
 });
 
