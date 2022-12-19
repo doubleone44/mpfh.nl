@@ -14,11 +14,12 @@
     "bootstrap": "^5.2.3",
     "pinia": "^2.0.28",
     "sass": "^1.57.0",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
-    "@types/node": "^18.11.12",
+    "@types/node": "^18.11.17",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
