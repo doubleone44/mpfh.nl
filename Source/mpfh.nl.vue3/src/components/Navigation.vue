@@ -11,12 +11,12 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">   
                             <li class="nav-item">
-                                <router-link to="/" class="nav-item" exact-active-class="active">
+                                <router-link to="/" exact-active-class="active">
                                     Home
                                 </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link to="/synth" class="nav-item" exact-active-class="active">
+                                <router-link to="/synth" exact-active-class="active">
                                     Synth
                                 </router-link>
                             </li>  
@@ -87,7 +87,8 @@
                 }
             }
 
-            a {
+            a
+            {
                 color: $pastel3;
                 text-transform: uppercase;
                 font-size: 1.5em;
@@ -101,19 +102,19 @@
                     text-decoration: none;
                 }
             }
-            &.active {
-                a {
-                    color: $pastel2;
-                    border-bottom: $pastel2 1px solid;
-                    text-decoration: none;
-                    }
+            // no border on focus-visible
+            a:focus-visible {
+                outline: none;
+            }
+            a.active {
+                color: $pastel2;
+                border-bottom: $pastel2 1px solid;
+                text-decoration: none;
 
-                &:hover,&:focus {
-                    a {
-                        color: $pastel1;
-                        border-bottom: $pastel1 1px solid;
-                        text-decoration: none;
-                    }
+                &:hover,&:focus,&:focus-visible {
+                    color: $pastel1;
+                    border-bottom: $pastel1 1px solid;
+                    text-decoration: none;
                 }
             }
         }
