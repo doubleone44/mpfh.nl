@@ -1,7 +1,12 @@
 <template>
     
-    <!-- tabs for Overtones, Envelope, and Tuning -->
-    <v-card>
+    <v-container>
+        <v-card>
+            <!-- Plot of output 
+            wavefunction -->
+        </v-card>
+
+        <v-card>
         <p>me first</p>
         <v-tabs v-model="tab">
             <v-tab value="overtones">Overtones</v-tab>
@@ -11,22 +16,20 @@
 
         <v-window v-model="tab">
             <v-window-item  value="overtones">
-                test
-                <!-- <Overtones :params="synthParams.overtones" /> -->
+                <Overtones :params="synthParams.overtones" />
             </v-window-item >
             <v-window-item  value="envelope">
-                test
-                <!-- <Envelope :params="synthParams.envelope" /> -->
+                <Envelope :params="synthParams.envelope" />
             </v-window-item >
             <v-window-item  value="tuning">
-                test
-                <!-- <Tuning :params="synthParams.tuning" /> -->
+                <Tuning :params="synthParams.tuning" />
             </v-window-item >
         </v-window>
     </v-card>
+    </v-container>
 
-    <!-- tab content -->
-    
+    <!-- Bottom synthesizer -->
+
 </template>
 
 <script setup lang='ts'>

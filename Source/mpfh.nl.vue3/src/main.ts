@@ -18,9 +18,6 @@ import { lightTheme, darkTheme } from "./themes";
 // use themes
 
 const vuetify = createVuetify({
-  icons: {
-    iconfont: 'mdi', // default - only for display purposes
-  },
   components,
   directives,
   theme: {
@@ -28,6 +25,11 @@ const vuetify = createVuetify({
     themes: {
       lightTheme,
       darkTheme,
+    },
+    variations: {
+      colors: ['primary', 'secondary', 'tertiary', 'background'],
+      lighten: 1,
+      darken: 2,
     }
   }
 })

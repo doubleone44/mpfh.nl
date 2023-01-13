@@ -1,8 +1,7 @@
 <template>
     <v-app-bar app
-        :elevation="4"
+        :elevation="0"
         color="background"
-        density="compact"
     >
         <template v-slot:prepend>
             <v-app-bar-nav-icon
@@ -13,60 +12,32 @@
             </v-app-bar-nav-icon>
         </template>
 
-        <v-app-bar-title>
+        <v-app-bar-title
+            class=""
+        >
             <span color="text-primary">
                 mpfh - {{ $route.name }} 
             </span>
         </v-app-bar-title>
 
-        <v-spacer></v-spacer>
+        <!-- <v-spacer></v-spacer> -->
 
-        <v-btn icon>
-            <v-icon
+        <template v-slot:append>
+            <v-btn 
                 v-if="dark"
-                @click.stop="toggleTheme()"
-            >"mdi-weather-night"</v-icon>
-            <v-icon
+                icon="mdi-weather-night" 
+                @click="dark = false"
+                @click.stop="toggleTheme()" >
+            </v-btn>
+            <v-btn
                 v-else
-                @click.stop="toggleTheme()"
-            >"mdi-weather-sunny"</v-icon>
-        </v-btn>
+                icon="mdi-weather-sunny"
+                @click="dark = true"
+                @click.stop="toggleTheme()" >
+            </v-btn>
+        </template>
 
-        
     </v-app-bar>
-
-
-    <!-- <div class="header">
-        <div class="container-flex bg-black"> 
-
-
-
-
-            <div class="container-fluid bg-black">
-                <nav class="navbar navbar-expand-lg bg-main">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                        <div class="burger-line"></div>
-                        <div class="burger-line"></div>
-                        <div class="burger-line"></div>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">   
-                            <li class="nav-item">
-                                <router-link to="/" exact-active-class="active">
-                                    Home
-                                </router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link to="/synth" exact-active-class="active">
-                                    Synth
-                                </router-link>
-                            </li>  
-                        </ul>
-                    </div>
-                </nav>    
-            </div>          
-        </div>
-    </div> -->
 </template>
 
 <script setup lang='ts'>
@@ -77,7 +48,7 @@ const emit = defineEmits(['toggle-drawer']);
 
 const theme = useTheme()
 
-let dark = computed(() => theme.global.current.value.dark)
+let dark = ref(theme.global.current.value.dark)
 
 const toggleDrawer = () => {
     emit('toggle-drawer');
@@ -89,41 +60,28 @@ const toggleTheme = () => {
 
 </script>
 
-<style scoped lang="scss">
-    // @import '../assets/scss/_variables.scss';
+<style lang="scss">
+    @import '../assets/scss/_variables.scss';
 
-    // .navbar {
-    //     font-family: 'IBM Plex Mono', monospace;
-    //     align-content: right;
-    //     padding-bottom: 20px;
+    .v-toolbar {
+        font-family: 'IBM Plex Mono', monospace;
+        margin-bottom: 20px;
 
-    //     a {
-    //         color: $pastel3;
-    //         text-transform: uppercase;
-    //         font-weight: 400;
-    //         text-decoration: none;
-    //     }
-    //     .navbar-brand {
-    //         // @media screen and (min-width: 992px)  {
-    //         //     font-size: 1em;
-    //         // }
-    //         margin-top: 10px;
-    //         font-size: 1.5em;
-    //         color: $pastel1;
+        .v-app-bar-nav-icon {
+            font-size: 2rem;
+            padding: 5px;
+            margin-left: 5px;
+        }
 
-    //         &:hover,&:focus {
-    //             color: $pastel1;
-    //         }
-    //         &.active {
-    //             color: $pastel1;
-    //             border-bottom: $pastel1 1px solid;
+        .v-toolbar-title {
+            font-size: 2rem;
+            color: rgb(var(--v-theme-on-background));
+            
+            &__placeholder {
+                padding: 5px!important;
+            }
+        }
 
-    //             &:hover,&:focus {
-    //                 color: $pastel1;
-    //                 border-bottom: $pastel1 1px solid;
-    //             }
-    //         }
-    //     }
     //     .navbar-nav {
     //         float:right;
     //     }
@@ -146,8 +104,7 @@ const toggleTheme = () => {
 
     //         a
     //         {
-    //             color: $pastel3;
-    //             text-transform: uppercase;
+    //             color: var(--text-color);
     //             font-size: 1.5em;
     //             font-weight: 400;
     //             text-align: right;
@@ -175,20 +132,8 @@ const toggleTheme = () => {
     //             }
     //         }
     //     }
-
-    //     .navbar-toggler {
-    //         .burger-line {
-    //             width: 50px;
-    //             height: 3px;
-    //             background-color: $pastel1;
-    //             margin: 15px 0;
-    //         }
-    //         padding-top: 20px;
-    //         padding-right: 0px;
-    //         border: none!important;
-    //         outline: none;
-    //     }       
     // }
+    }
         
 </style>
 

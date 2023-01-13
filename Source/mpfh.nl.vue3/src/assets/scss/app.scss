@@ -1,9 +1,8 @@
 @import "_variables.scss";
 @import "_fonts.scss";
-@import "././node_modules/bootstrap/scss/bootstrap.scss";
+// @import "././node_modules/bootstrap/scss/bootstrap.scss";
 
 html body {
-    background-color: $black;
     min-height: 100vh;
     font-size: 100%;
     @media screen and (min-width: 786px)  { font-size: 100% }
@@ -29,91 +28,48 @@ html body {
         font-size: 3em;
     }
 
-    // p {
-    //     a {
-    //         color: $pastel5;
-    //         text-decoration: none;
-    //         border-bottom: dashed 1px $pastel5;
+    p {
+        a {
+            color: rgb(var(--v-theme-secondary));
+            text-decoration: none;
+            border-bottom: dashed 1px $pastel5;
 
-    //         &:active, &:hover {
-    //             text-decoration: none;
-    //             color: darken($pastel5, 10%)
-    //         }
-    //     }    
-    // }
+            &:active, &:hover {
+                text-decoration: none;
+                color: darken($pastel5, 10%)
+            }
+        }    
+    }
 
-    // ul {
-    //     list-style-type: none;
-    //     li {
-    //         color: $pastel1;
-    //     }
-    // }
+    ul {
+        list-style-type: none;
+        li {
+            color: rgb(var(--v-theme-primary));
+        }
+    }
 
-    // .accent1 {
-    //     color: $pastel4;
-    // }
-    // .accent2 {
-    //     color: $pastel5;
-    // }
+    .accent1 {
+        color: rgb(var(--v-theme-primary));
+    }
+    .accent2 {
+        color: rgb(var(--v-theme-secondary));
+    }
 }
+
+.v-container {
+    background-color: rgb(var(--v-theme-background));
+}
+
 
 .wrapper {
+    background-color: rgb(var(--v-theme-background));
     overflow-x: hidden;
     position: relative;
+    z-index: 40;
 }
 
-// .bg-black {
-//     background-color: $black;
-// }
 
 
-#parallax-container {
-    display: block;
-    height: 90vh;
-    position: relative;
-    overflow: hidden;
-
-    @media screen and (min-width: 992px)  { 
-        height: 100vh; 
-    }
-
-    div {
-        position: fixed;
-        top: 0;
-        background-position: center right !important;
-        background-size: cover;
-        transform: translateY(0px);
-        height: 150vh;
-        width: 100%;
-        }
-
-    &::before, &::after {
-        position: absolute;
-        content: '';
-        bottom: 0vh;
-        width: #{'calc(50% + 10px)'};
-        /* don't change */
-        height: 50px;
-        /* must be equal to padding-top */
-        background: $black;
-        overflow-x: hidden;
-
-        @media screen and (min-width: 992px)  { 
-            bottom:0; 
-        }
-
-    }
-    &::before {
-        left: 0;
-        transform: skew(45deg);
-        transform-origin: right bottom;
-    }
-    &::after {
-        right: 0;
-        transform: skew(-45deg);
-        transform-origin: left bottom;
-    }
-}
 
 .full-container {
     min-height: #{'calc(100vh - '$header-height')'};
