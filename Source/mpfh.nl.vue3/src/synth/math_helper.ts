@@ -11,15 +11,18 @@ function binomial(k: number, n: number, p: number) {
 }
 
 export function scale_func(overtone: number, scale: number, shift: number) {
-    return 2 * Math.abs(0.5 * scale - (overtone - shift*scale) % scale) / scale;
+    if (scale == 0) {
+        return 1;
+    }
+    return (2 * Math.abs(0.5 * scale - Math.abs(overtone + (scale*shift/2)) % scale) / scale)**2;
 }
 
-export function binomial_spread(width: number, asym: number) {
-    let n = width * 2 + 1;
+export function binomial_spread(ceil_width: number, width: number, asym: number) {
+    let n = width * 2;
 
     let p = (1+asym) / 2;
     
     return (i: number) => {
-        return binomial(i+width, n, p);
+        return binomial(i+ceil_width, n, p);
     }
 }

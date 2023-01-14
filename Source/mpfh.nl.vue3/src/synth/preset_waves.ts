@@ -8,8 +8,8 @@ export var triangleParams: OvertoneParameters = {
     overtone_resolution: 1,
     
     scale_strength: 1,
-    scale: 1,
-    scale_shift: 1,
+    scale: 2,
+    scale_shift: 0,
     
     choral_width_a: 0,
     choral_width_b: 0,
@@ -32,8 +32,8 @@ export var squareParams: OvertoneParameters = {
     overtone_resolution: 1,
 
     scale_strength: 1,
-    scale: 1,
-    scale_shift: 1,
+    scale: 2,
+    scale_shift: 0,
 
     choral_width_a: 0,
     choral_width_b: 0,
@@ -56,8 +56,8 @@ export var sawtoothParams: OvertoneParameters = {
     overtone_resolution: 1,
 
     scale_strength: 1,
-    scale: 0,
-    scale_shift: 0,
+    scale: 1,
+    scale_shift: 1,
     
     choral_width_a: 0,
     choral_width_b: 0,

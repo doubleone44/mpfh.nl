@@ -1,82 +1,159 @@
 <template>
-    <input
-        v-model="params.scale"
-        min="0" max="8"
-        :step="smooth.scale ? 0.001 : 1"
-        type="range" 
-    />
-    <input type="checkbox" v-model="smooth.scale"
-    />
-    {{ Math.floor(params.scale*1000)/10 }}%
+    <v-container>
+        <!-- Overtone resolution & count -->
+        <v-row>
+            <v-col sm="4"
+            class="elevation-2">
+                <slider 
+                    v-model="params.overtone_count"
+                    label="Overtone count"
+                    :min="1"
+                    :max="16"
+                    :step="1"
+                    :smooth_switch="true"
+                    :percentage="false"
+                ></slider>
+            </v-col>
+            <v-col sm="4"
+            class="elevation-2">
+                <slider 
+                    v-model="params.overtone_resolution"
+                    label="Overtone resolution"
+                    :min="1"
+                    :max="8"
+                    :step="1"
+                    :smooth_switch="false"
+                    :percentage="false"
+                ></slider>
+            </v-col>
+        </v-row>
+        <!-- Scale params -->
+        <v-row>  
+            <v-col sm="4"
+            class="elevation-2">
+                <slider 
+                    v-model="params.scale"
+                    label="Scale"
+                    :min="1"
+                    :max="8"
+                    :step="1"
+                    :smooth_switch="true"
+                    :percentage="false"
+                ></slider>
+            </v-col>
+            <v-col sm="4"
+            class="elevation-2">
+                <slider 
+                    v-model="params.scale_shift"
+                    label="Scale shift"
+                    :min="0"
+                    :max="1"
+                    :step="0.01"
+                    :smooth_switch="false"
+                    :percentage="true"
+                ></slider>
+            </v-col>
+            <v-col sm="4"
+            class="elevation-2">
+                <slider 
+                    v-model="params.scale_strength"
+                    label="Scale strength"
+                    :min="0"
+                    :max="1"
+                    :step="0.01"
+                    :smooth_switch="false"
+                    :percentage="true"
+                ></slider>
+            </v-col>
+        </v-row>
+        
+        <v-row>
+            <v-col sm="4" class="elevation-2">
+                <select 
+                    v-model="params.overtone_decay_function"
+                    label="Decay type"
+                    :options="decay_options" >
+                    <option v-for="option in decay_options" :value="option.value">
+                        {{ option.label }}
+                    </option>
+                </select>
+            </v-col>
+            <v-col sm="4" class="elevation-2">
+                <slider 
+                    v-model="params.overtone_decay_args"
+                    label="Decay scale"
+                    :min="0.25"
+                    :max="8"
+                    :step="0.25"
+                    :smooth_switch="true"
+                    :percentage="false"
+                ></slider>
+            </v-col>
+        </v-row>
+
+        <!-- choral parameters -->
+        <!-- <v-row>
+            <v-col sm="4">
+                <slider 
+                    v-model="params.choral_width_a"
+                    label="Choral width"
+                    :min="0"
+                    :max="0.1"
+                    :step="0.01"
+                    :smooth_switch="false"
+                    :percentage="false"
+                ></slider>
+                <slider 
+                    v-model="params.choral_width_b"
+                    label=""
+                    :min="0"
+                    :max="1"
+                    :step="0.01"
+                    :smooth_switch="false"
+                    :percentage="false"
+                ></slider>
+                <slider 
+                    v-model="params.choral_width_c"
+                    label=""
+                    :min="0"
+                    :max="10"
+                    :step="1"
+                    :smooth_switch="false"
+                    :percentage="false"
+                ></slider>
+            </v-col>
+            
+        </v-row> -->
+    </v-container>
+    
 </template>
 
 <script setup lang='ts'>
 
-import type { OvertoneParameters }  from '@/synth/overtones';
+import { ref, watch, defineProps, defineEmits } from 'vue'
 
-import { ref, defineProps } from 'vue'
+import type { OvertoneParameters }  from '@/synth/overtones';
+import { inverse_decay_func, exponential_decay_func } from '@/synth/overtones';
+
+import slider from '@/components/synth/Slider.vue';
 
 const props = defineProps<{
     params: OvertoneParameters,
-    smooth: {
-        scale: boolean,
-    }
 }>()
 
+const decay_options = [
+    {value: inverse_decay_func, label: 'Inverse'},
+    {value: exponential_decay_func, label: 'Exponential'},
+]
+
+const emits = defineEmits(['update:params'])
+
 const params = ref(props.params)
-const smooth = {
-    scale: false
-}
+
+watch(params, (newParams: OvertoneParameters) => {
+    emits('update:params', newParams)
+}, {deep: true} )
 
 </script>
 
 
-
-<style scoped lang="scss">
-
-input[type='checkbox'] {
-    width: 25px;
-
-    &:checked {
-        background: rgb(var(--v-theme-primary))
-    }
-}
-
-input {
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%;
-    height: 25px;
-    background-color: rgb(var(--v-theme-surface-variant));
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s; 
-    transition: opacity .2s;
-    border: none;
-    color: rgb(var(--v-theme-primary))
-}
-
-input:hover {
-    opacity: 1; 
-}
-
-input::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-    appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    border-radius: 0px;
-    border: none;
-    background: rgb(var(--v-theme-primary)); /* Green background */
-    cursor: pointer; /* Cursor on hover */
-}
-
-input::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    border-radius: 0px;
-    border: none;
-    background: rgb(var(--v-theme-primary)); /* Green background */
-    cursor: pointer; /* Cursor on hover */
-}
-</style>

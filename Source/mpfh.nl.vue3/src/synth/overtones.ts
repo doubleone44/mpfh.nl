@@ -32,7 +32,7 @@ export var wobble_func = (scale: number) => {
 
 export var inverse_decay_func = (base: number) => {
     return (overtone: number) => {
-        return base/(overtone);
+        return 1/Math.pow(overtone, base);
     }
 }
 
@@ -49,7 +49,9 @@ export var quadratic_offset_func = (a: number, b: number, c: number) => {
 }
 
 export function processParametersToWave(ctx: AudioContext, p: OvertoneParameters) { 
-    let N = (p.overtone_count+1) * p.overtone_resolution;
+    let overtone_res = Math.pow(2,p.overtone_resolution)
+
+    let N = (p.overtone_count+1) * overtone_res;
     let frequencyDomain = new Float32Array(N);
 
     let wobble_f = wobble_func(p.scale)
@@ -60,15 +62,15 @@ export function processParametersToWave(ctx: AudioContext, p: OvertoneParameters
     // The second overtone is the first harmonic.
     // Etc.
     for (let overtone = 1; overtone <= p.overtone_count+1; overtone++) {
-        let i = overtone * p.overtone_resolution;
+        let i = overtone * overtone_res;
 
         // for overtone scaling, triangle waves etc.
         let min_s = 1 - p.scale_strength;
-        let s_factor = Math.min(min_s, scale_func(overtone, p.scale, p.scale_shift));
+        let s_factor = Math.max(min_s, scale_func(overtone, p.scale, p.scale_shift));
 
         // bound choral asymmetry between -0.9 and 0.9
         let choral_asymmetry = Math.max(Math.min(choral_asymmetry_f(overtone), 0.9), -0.9);
-        let choral_width = Math.min(choral_width_f(overtone), p.overtone_resolution-1);
+        let choral_width = Math.min(choral_width_f(overtone), overtone_res-1);
         let ceil_width = Math.ceil(choral_width);
         
         let overtone_decay = overtone_decay_f(overtone);
@@ -81,10 +83,16 @@ export function processParametersToWave(ctx: AudioContext, p: OvertoneParameters
         let ampl = s_factor * overtone_decay;
 
         // for loop between overtone-choral_width and overtone+choral_width
-        for (let j = i - ceil_width; j <= i + ceil_width; i++) {
-            let choral_ampl = binomial_spread(choral_width, choral_asymmetry)(j-i)
-            frequencyDomain[j] = ampl * choral_ampl * (1+p.drive);
+        if (ceil_width == 0) {
+            frequencyDomain[i] = ampl * (1+p.drive);
+        } else {
+            for (let j = i - ceil_width; j <= i + ceil_width; j++) {
+                let choral_ampl = binomial_spread(ceil_width, choral_width, choral_asymmetry/2+1)(j-i)
+                frequencyDomain[j] = ampl * choral_ampl * (1+p.drive);
+            }
         }
+
+        
     }
 
     return ctx.createPeriodicWave(frequencyDomain, new Float32Array(N));

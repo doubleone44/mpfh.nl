@@ -7,33 +7,6 @@ export type TuningParameters = {
     base_frequency: number
 }
 
-export var _12TET: TuningParameters = {
-    offset: 0,
-    ratio: 1/12,
-    ratio_type: "single",
-    tones_per_scale: 12,
-    exponent_per_scale: 2,
-    base_frequency: 440
-}
-
-export var _12pyth: TuningParameters = {
-    offset: 0,
-    ratio: [1, 256/243, 9/8, 32/27, 81/64, 4/3, 729/512, 3/2, 128/81, 27/16, 16/9, 243/128],
-    ratio_type: "absolute",
-    tones_per_scale: 12,
-    exponent_per_scale: 2,
-    base_frequency: 440
-}
-
-export var _19EDO: TuningParameters = {
-    offset: 0,
-    ratio: 1/19,
-    ratio_type: "single",
-    tones_per_scale: 19,
-    exponent_per_scale: 2,
-    base_frequency: 440
-}
-
 export function processParametersToTuning(
     p: TuningParameters,
     middle_note: number,
@@ -53,7 +26,7 @@ export function processParametersToTuning(
 
     for (let i = 0; i < note_count; i++) {
         let note = i - middle_note;
-        let tone = note % tones_per_scale;
+        let tone = (note + 10*tones_per_scale) % tones_per_scale;
         let scale = Math.pow(exponent_per_scale, Math.floor(note / tones_per_scale));
 
         let frequency = base_frequency;

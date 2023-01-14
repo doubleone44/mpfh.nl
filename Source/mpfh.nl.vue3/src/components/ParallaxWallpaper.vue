@@ -24,7 +24,6 @@ function backgroundStyleString(i: number) {
 }
       
 watch(dark, () => {
-  console.log("dark changed")
   let parent = document.getElementById('parallax-container');
   if(parent != null) {
     let children = parent.getElementsByTagName('div');
